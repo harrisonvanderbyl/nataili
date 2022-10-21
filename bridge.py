@@ -51,8 +51,8 @@ class BridgeData(object):
         self.max_power = int(os.environ.get("HORDE_MAX_POWER", 8))
         self.nsfw = os.environ.get("HORDE_NSFW", "true") == "true"
         self.censor_nsfw =  os.environ.get("HORDE_CENSOR", "false") == "true"
-        self.blacklist = list(lambda a : a,filter(os.environ.get("HORDE_BLACKLIST", "").split(",")))
-        self.censorlist =  list(lambda a : a,filter(os.environ.get("HORDE_CENSORLIST", "").split(",")))
+        self.blacklist = list(filter(lambda a : a,os.environ.get("HORDE_BLACKLIST", "").split(",")))
+        self.censorlist =  list(filter(lambda a : a,os.environ.get("HORDE_CENSORLIST", "").split(",")))
         self.allow_img2img = os.environ.get("HORDE_IMG2IMG", "true") == "true"
         self.allow_unsafe_ip = os.environ.get("HORDE_ALLOW_UNSAFE_IP", "true") == "true"
         self.model_names = os.environ.get("HORDE_MODELNAMES", "stable_diffusion").split(",")
