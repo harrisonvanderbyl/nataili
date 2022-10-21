@@ -47,12 +47,12 @@ class BridgeData(object):
         self.api_key = os.environ.get("HORDE_API_KEY", "0000000000")
         # Put other users whose prompts you want to prioritize.
         # The owner's username is always included so you don't need to add it here, unless you want it to have lower priority than another user
-        self.priority_usernames = os.environ.get("HORDE_PRIORITY_USERNAMES", "").split(",")
+        self.priority_usernames =  list(os.environ.get("HORDE_PRIORITY_USERNAMES", "").split(",").filter(lambda a : a))
         self.max_power = int(os.environ.get("HORDE_MAX_POWER", 8))
         self.nsfw = os.environ.get("HORDE_NSFW", "true") == "true"
         self.censor_nsfw =  os.environ.get("HORDE_CENSOR", "false") == "true"
-        self.blacklist = os.environ.get("HORDE_BLACKLIST", "").split(",")
-        self.censorlist = os.environ.get("HORDE_CENSORLIST", "").split(",")
+        self.blacklist = list(os.environ.get("HORDE_BLACKLIST", "").split(",").filter(lambda a : a))
+        self.censorlist =  list(os.environ.get("HORDE_CENSORLIST", "").split(",").filter(lambda a : a))
         self.allow_img2img = os.environ.get("HORDE_IMG2IMG", "true") == "true"
         self.allow_unsafe_ip = os.environ.get("HORDE_ALLOW_UNSAFE_IP", "true") == "true"
         self.model_names = os.environ.get("HORDE_MODELNAMES", "stable_diffusion").split(",")
