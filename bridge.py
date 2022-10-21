@@ -35,16 +35,16 @@ max_content_length = 1024
 max_length = 80
 current_softprompt = None
 softprompts = {}
-
+import os
 
 class BridgeData(object):
     def __init__(self):
         random.seed()
         self.horde_url = "https://stablehorde.net"
         # Give a cool name to your instance
-        self.worker_name = f"Automated Instance #{random.randint(-100000000, 100000000)}"
+        self.worker_name = os.environs.get("HORDE_WORKER_NAME", f"Automated Instance #{random.randint(-100000000, 100000000)}")
         # The api_key identifies a unique user in the horde
-        self.api_key = "0000000000"
+        self.api_key = os.environs.get("HORDE_API_KEY", "0000000000")
         # Put other users whose prompts you want to prioritize.
         # The owner's username is always included so you don't need to add it here, unless you want it to have lower priority than another user
         self.priority_usernames = []
